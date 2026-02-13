@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Love ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin-top: 30px;
+        }
+
+        #timer {
+            font-size: 20px;
+            margin: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff0033;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: gray;
+            color: white;
+            position: absolute;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            font-size: 24px;
+            animation: floatUp 5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+
+        /* Password Screen */
+        #passwordScreen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #ff4d6d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+    <h2>Only for My Love 💌</h2>
+    <input type="password" id="passwordInput" placeholder="Enter our secret word">
+    <button onclick="checkPassword()">Unlock ❤️</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
+
+    <h1>My Beautiful [Wifee] ❤️</h1>
+
+    <h2>1st February 2024 Jab we met 💖</h2>
+
+    <div id="timer"></div>
+
+    <h2>Will you be my Valentine? 😘</h2>
+    <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
+    <button id="noBtn">No 😜</button>
+
+    <div id="result"></div>
+
+    <audio autoplay loop>
+        <source src="Mp3.m4a" type="audio/mpeg">
+    </audio>
+
+</div>
+
+<script>
+
+    // CHANGE PASSWORD HERE
+    function checkPassword() {
+        const password = document.getElementById("passwordInput").value;
+        if(password === "4554") {   // <-- change this
+            document.getElementById("passwordScreen").style.display = "none";
+            document.getElementById("mainContent").classList.remove("hidden");
+        } else {
+            alert("Wrong password 😜");
+        }
+    }
+
+    // TIMER
+    const startDate = new Date("February 1, 2024 00:00:00").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+            days + " days " +
+            hours + " hours " +
+            minutes + " minutes " +
+            seconds + " seconds together ❤️";
+    }
+
+    setInterval(updateTimer, 1000);
+
+    // YES BUTTON
+    function sayYes() {
+        document.getElementById("result").innerHTML =
+            "I knew you would say YES! 💖😍";
+    }
+
+    // NO BUTTON ESCAPE
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", function() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    // FLOATING HEARTS
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
