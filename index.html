@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Love Story ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 36px;
+        }
+
+        #timer {
+            font-size: 22px;
+            margin: 20px 0;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #d63384;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>We Met on 1st February 2024 ❤️</h1>
+
+<div id="timer"></div>
+
+<div class="container">
+    <h2>Will you be my Valentine? 💖</h2>
+    <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
+    <button id="noBtn">No 😜</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    // Time Counter
+    const startDate = new Date("February 1, 2024 00:00:00").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const difference = now - startDate;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+            "We have been together for:<br>" +
+            days + " days " +
+            hours + " hours " +
+            minutes + " minutes " +
+            seconds + " seconds ❤️";
+    }
+
+    setInterval(updateTimer, 1000);
+
+    // Yes Button
+    function sayYes() {
+        document.getElementById("result").innerHTML = 
+            "I knew you would say YES! 💖😍";
+    }
+
+    // No Button Escape
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", function() {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+</script>
+
+</body>
+</html>
